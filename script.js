@@ -5,26 +5,50 @@ function getComputerChoice() {
     let random = Math.floor(Math.random() * 3);
     switch (random) {
         case 0:
-            console.log("Rock");
-            break;
+            return "rock";
         case 1:
-            console.log("Paper");
-            break;
+            return "paper";
         case 2:
-            console.log("Scissors");
-            break;
+            return "scissors";
         default:
-            console.log("Error");
-            break;
-    }    
+            return "Error";
+    }
 }
+
 function getHumanChoice() {
     let humanChoice = prompt("Enter Your Choice: ")
     humanChoice = humanChoice.toLowerCase();
-    console.log(humanChoice);
-    
+    return humanChoice;
+
 }
 
-function playRound(humanChoice, computerScore) {
-    
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+function playRound(humanChoice, computerChoice) {
+    if (humanChoice === "rock" && computerChoice === "rock") {
+        return "You are equals!";
+    } else if (humanChoice === "rock" && computerChoice === "paper") {
+        computerScore++;
+        return "You lose! Paper beats Rock!";
+    } else if (humanChoice === "rock" && computerChoice === "scissors") {
+        humanScore++;
+        return "You win! Rock beats Scissors!";
+    } else if (humanChoice === "paper" && computerChoice === "rock") {
+        humanScore++;
+        return "You win! Paper beats Rock!";
+    } else if (humanChoice === "paper" && computerChoice === "scissors") {
+        computerScore++;
+        return "You lose! Scissors beats Paper!";
+    } else if (humanChoice === "scissors" && computerChoice === "rock") {
+        computerScore++;
+        return "You lose! Rock beats Scissors!";
+    } else if (humanChoice === "scissors" && computerChoice === "paper") {
+        humanScore++;
+        return "You win! Scissors beats Paper!";
+    } else {
+        return "Something is wrong!";
+    }
 }
+console.log(
+    playRound(humanSelection, computerSelection)
+);
