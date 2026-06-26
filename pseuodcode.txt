@@ -4,3 +4,7 @@
     - equals 0 it's rock
     - equals 1 it's paper
     - equals 2 it's scissors
+
+------------ Human Choice ------------
+1. Get the input from user
+2. Print the input
