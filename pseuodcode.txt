@@ -1,0 +1,6 @@
+------------ Computer Choice ------------
+1. Get a random number from 0 - 2
+2. If the number 
+    - equals 0 it's rock
+    - equals 1 it's paper
+    - equals 2 it's scissors
