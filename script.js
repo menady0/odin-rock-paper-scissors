@@ -15,14 +15,14 @@ function getComputerChoice() {
   }
 }
 
-function getHumanChoice() {
-  let humanChoice = prompt("Enter Your Choice: ");
-  humanChoice = humanChoice.toLowerCase();
-  return humanChoice;
-}
+// function getHumanChoice() {
+//   let humanChoice = prompt("Enter Your Choice: ");
+//   humanChoice = humanChoice.toLowerCase();
+//   return humanChoice;
+// }
 
 // getHumanChoice is a function but get a new return every time it's called, it has to be written this way
-const humanSelection = getHumanChoice;
+// const humanSelection = getHumanChoice;
 const computerSelection = getComputerChoice;
 
 function playRound(humanChoice, computerChoice) {
@@ -46,19 +46,47 @@ function playRound(humanChoice, computerChoice) {
   } else if (humanChoice === "scissors" && computerChoice === "paper") {
     humanScore++;
     return "You win! Scissors beats Paper!";
+  } else if (humanChoice === "paper" && computerChoice === "paper") {
+    return "You are equals!";
+  } else if (humanChoice === "scissors" && computerChoice === "scissors") {
+    return "You are equals!";
   } else {
     return "Something is wrong!";
   }
 }
 
-function playGame() {
-  let i = 0;
-  do {
-    playRound(humanSelection(), computerSelection());
-    i++;
-  } while (i < 4);
-  console.log(
-    `End of game\n${humanScore > computerScore ? "You won the game!" : computerScore > humanScore ? "You lost the game!" : "This is draw!"}\nYour Score: ${humanScore},\nComputer Score: ${computerScore}`,
-  );
-}
-playGame();
+// function playGame() {
+//   let i = 0;
+//   do {
+//     playRound(humanSelection(), computerSelection());
+//     i++;
+//   } while (i < 4);
+//   console.log(
+//     `End of game\n${humanScore > computerScore ? "You won the game!" : computerScore > humanScore ? "You lost the game!" : "This is draw!"}\nYour Score: ${humanScore},\nComputer Score: ${computerScore}`,
+//   );
+// }
+// playGame();
+
+const actions = document.querySelector(".actions");
+const result = document.querySelector(".result");
+const reset = document.querySelector("#reset")
+
+actions.addEventListener("click", (e) => {
+  const human = e.target.id;
+  const computer = computerSelection();
+  result.innerText = `${playRound(human, computer)}\n
+  You: ${humanScore}, Computer: ${computerScore}`
+  if(humanScore === 5 || computerScore === 5){
+    reset.style.display = 'block'
+    actions.style.display = 'none'
+    alert("Game Over!")
+  }
+});
+
+reset.addEventListener('click', ()=>{
+  humanScore = 0;
+  computerScore = 0;
+  result.textContent = ''
+  actions.style.display = 'block'
+  reset.style.display = 'none'
+})
